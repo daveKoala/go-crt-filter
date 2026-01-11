@@ -51,3 +51,25 @@ type STHResult struct {
 	STH         *STHResponse
 	Error       error
 }
+
+// BatchJob represents a single batch of entries to fetch
+type BatchJob struct {
+	Provider    string
+	LogID       string
+	BaseURL     string
+	Description string
+	StartIndex  int64
+	EndIndex    int64
+	CutOffDate  time.Time
+}
+
+// LeafEntry represents a single log entry from the CT log
+type LeafEntry struct {
+	LeafInput string `json:"leaf_input"`
+	ExtraData string `json:"extra_data"`
+}
+
+// EntriesResponse represents the response from get-entries endpoint
+type EntriesResponse struct {
+	Entries []LeafEntry `json:"entries"`
+}

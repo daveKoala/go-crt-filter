@@ -10,7 +10,7 @@ google:
       mode: continuous
       treeSize: 2.5B
 
-    - id: eu1/xenon2025h2
+    - id: eu1/argon2025h2
       description: Google Xenon EU (current)
       period: Jul 2025 - present
       mode: continuous
