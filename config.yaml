@@ -1,0 +1,135 @@
+# Certificate Transparency Log Configuration
+
+google:
+  baseUrl: https://ct.googleapis.com/logs
+  logs:
+    # Current generation (continuous scan)
+    - id: us1/argon2025h2
+      description: Google Argon US (current)
+      period: Jul 2025 - present
+      mode: continuous
+      treeSize: 2.5B
+
+    - id: eu1/xenon2025h2
+      description: Google Xenon EU (current)
+      period: Jul 2025 - present
+      mode: continuous
+      treeSize: 2.6B
+
+    # Previous generation (historical/one-time scan)
+    - id: us1/argon2025h1
+      description: Google Argon US (H1 2025)
+      period: Jan 2025 - Jun 2025
+      mode: historical
+      treeSize: 1.4B
+
+    - id: eu1/xenon2025h1
+      description: Google Xenon EU (H1 2025)
+      period: Jan 2025 - Jun 2025
+      mode: historical
+      treeSize: 1.9B
+
+    # 2024 logs (historical/one-time scan)
+    - id: us1/argon2024
+      description: Google Argon US (2024)
+      period: Jan 2024 - Dec 2024
+      mode: historical
+      treeSize: 2.5B
+
+    - id: eu1/xenon2024
+      description: Google Xenon EU (2024)
+      period: Jan 2024 - Dec 2024
+      mode: historical
+      treeSize: 2.7B
+
+    # Optional: 2023 logs for 36-month depth (uncomment if needed)
+    # - id: argon2023
+    #   description: Google Argon (2023)
+    #   period: Jan 2023 - Dec 2023
+    #   mode: historical
+    #   treeSize: 1.8B
+
+    # - id: xenon2023
+    #   description: Google Xenon (2023)
+    #   period: Jan 2023 - Dec 2023
+    #   mode: historical
+    #   treeSize: 2.1B
+
+cloudflare:
+  baseUrl: https://ct.cloudflare.com/logs
+  logs:
+    - id: nimbus2025
+      description: Cloudflare Nimbus 2025
+      period: Jan 2025 - present
+      mode: continuous
+      treeSize: 3.1B
+    # Note: nimbus2024 and earlier are retired (404)
+
+digicert:
+  # Digicert deviates from the standard pattern
+  # // - Yeti: https://yeti{year}.ct.digicert.com/log (full year logs)
+  # // - Wyvern: https://wyvern.ct.digicert.com/{year}h{half} (half-year logs)
+  baseUrl: https://wyvern.ct.digicert.com
+  logs:
+    # Yeti series (full-year logs)
+    - id: yeti2025
+      description: DigiCert Yeti 2025
+      period: Jan 2025 - present
+      mode: continuous
+      treeSize: 2.0B
+
+    # Wyvern series (half-year logs)
+    - id: 2025h2
+      description: DigiCert Wyvern H2 2025
+      period: Jul 2025 - present
+      mode: continuous
+      treeSize: 1.0B
+
+    - id: 2025h1
+      description: DigiCert Wyvern H1 2025
+      period: Jan 2025 - Jun 2025
+      mode: historical
+      treeSize: 276M
+
+    - id: 2024h2
+      description: DigiCert Wyvern H2 2024
+      period: Jul 2024 - Dec 2024
+      mode: historical
+      treeSize: 30M
+    # Note: 2024h1 has only 50K entries, excluded
+
+letsencrypt:
+  # Let's Encrypt uses log name in the URL path
+  baseUrl: https://oak.ct.letsencrypt.org/
+  logs: 
+    - id: 2025h2
+      description: Let's Encrypt Oak H2 2025
+      period: Jul 2025 - present
+      mode: continuous
+      treeSize: 2.0B
+
+    - id: 2025h1
+      description: Let's Encrypt Oak H1 2025
+      period: Jan 2025 - Jun 2025
+      mode: historical
+      treeSize: 991M
+    # Note: 2024 and earlier logs are retired (404)
+
+sectigo:
+  # Sectigo Elephant series uses URL structure: https://{logName}.ct.sectigo.com
+  baseUrl: https://<log_name>.ct.sectigo.com
+  logs:
+    # Mammoth series
+    - id: mammoth2025h2
+      description: Sectigo Mammoth H2 2025
+      period: Jul 2025 - present
+      mode: continuous
+      treeSize: 865M
+
+    # Elephant series
+    - id: elephant2025h2
+      description: Sectigo Elephant H2 2025
+      period: Jul 2025 - present
+      mode: continuous
+      treeSize: 1.2B
+    # Note: 2024 and 2025h1 logs not available (404)
