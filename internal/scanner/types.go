@@ -73,3 +73,12 @@ type LeafEntry struct {
 type EntriesResponse struct {
 	Entries []LeafEntry `json:"entries"`
 }
+
+// Certificate represents a parsed X.509 certificate
+type Certificate struct {
+	Subject   string
+	Issuer    string
+	NotBefore time.Time
+	NotAfter  time.Time
+	SANs      []string // Subject Alternative Names
+}
