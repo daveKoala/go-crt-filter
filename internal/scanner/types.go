@@ -33,3 +33,21 @@ type ScanJob struct {
 	LogID      string
 	CutOffDate time.Time
 }
+
+// STHResponse represents the Signed Tree Head response from a CT log
+type STHResponse struct {
+	TreeSize          int64  `json:"tree_size"`
+	Timestamp         int64  `json:"timestamp"`
+	SHA256RootHash    string `json:"sha256_root_hash"`
+	TreeHeadSignature string `json:"tree_head_signature"`
+}
+
+// STHResult represents the result of fetching STH from a log
+type STHResult struct {
+	Provider    string
+	LogID       string
+	BaseURL     string
+	Description string
+	STH         *STHResponse
+	Error       error
+}

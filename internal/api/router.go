@@ -1,14 +1,15 @@
 package api
 
 import (
-	"github.com/gorilla/mux"
+	"net/http"
 
 	"github.com/daveKoala/go-crt-filter/internal/scanner"
 )
 
-// SetupRoutes registers all application routes
-func SetupRoutes(router *mux.Router) {
-	router.HandleFunc("/status", StatusHandler).Methods("GET")
-	router.HandleFunc("/scan", scanner.ScanHandler).Methods("POST")
-	router.HandleFunc("/test", TestHandler).Methods("POST")
+// SetupRoutes registers all application routes using Go 1.22+ enhanced routing
+func SetupRoutes(mux *http.ServeMux) {
+	// Method-specific routing built into Go 1.22+
+	mux.HandleFunc("GET /status", StatusHandler)
+	mux.HandleFunc("POST /scan", scanner.ScanHandler)
+	mux.HandleFunc("POST /test", TestHandler)
 }

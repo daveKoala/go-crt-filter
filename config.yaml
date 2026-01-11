@@ -66,19 +66,10 @@ cloudflare:
     # Note: nimbus2024 and earlier are retired (404)
 
 digicert:
-  # Digicert deviates from the standard pattern
-  # // - Yeti: https://yeti{year}.ct.digicert.com/log (full year logs)
-  # // - Wyvern: https://wyvern.ct.digicert.com/{year}h{half} (half-year logs)
+  # Digicert Wyvern series (half-year logs)
+  # Note: Yeti series removed (404 errors)
   baseUrl: https://wyvern.ct.digicert.com
   logs:
-    # Yeti series (full-year logs)
-    - id: yeti2025
-      description: DigiCert Yeti 2025
-      period: Jan 2025 - present
-      mode: continuous
-      treeSize: 2.0B
-
-    # Wyvern series (half-year logs)
     - id: 2025h2
       description: DigiCert Wyvern H2 2025
       period: Jul 2025 - present
@@ -115,19 +106,21 @@ letsencrypt:
       treeSize: 991M
     # Note: 2024 and earlier logs are retired (404)
 
-sectigo:
-  # Sectigo Elephant series uses URL structure: https://{logName}.ct.sectigo.com
-  baseUrl: https://<log_name>.ct.sectigo.com
+sectigo_mammoth:
+  # Sectigo Mammoth series - log name is part of the hostname
+  baseUrl: https://mammoth2025h2.ct.sectigo.com
   logs:
-    # Mammoth series
-    - id: mammoth2025h2
+    - id: ""
       description: Sectigo Mammoth H2 2025
       period: Jul 2025 - present
       mode: continuous
       treeSize: 865M
 
-    # Elephant series
-    - id: elephant2025h2
+sectigo_elephant:
+  # Sectigo Elephant series - log name is part of the hostname
+  baseUrl: https://elephant2025h2.ct.sectigo.com
+  logs:
+    - id: ""
       description: Sectigo Elephant H2 2025
       period: Jul 2025 - present
       mode: continuous

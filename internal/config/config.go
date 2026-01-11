@@ -24,11 +24,12 @@ type Provider struct {
 
 // Config represents the entire configuration structure
 type Config struct {
-	Google      Provider `yaml:"google"`
-	Cloudflare  Provider `yaml:"cloudflare"`
-	Digicert    Provider `yaml:"digicert"`
-	LetsEncrypt Provider `yaml:"letsencrypt"`
-	Sectigo     Provider `yaml:"sectigo"`
+	Google          Provider `yaml:"google"`
+	Cloudflare      Provider `yaml:"cloudflare"`
+	Digicert        Provider `yaml:"digicert"`
+	LetsEncrypt     Provider `yaml:"letsencrypt"`
+	SectigoMammoth  Provider `yaml:"sectigo_mammoth"`
+	SectigoElephant Provider `yaml:"sectigo_elephant"`
 }
 
 // Global config instance
@@ -78,7 +79,8 @@ func (c *Config) AllLogs() []struct {
 		{"cloudflare", c.Cloudflare},
 		{"digicert", c.Digicert},
 		{"letsencrypt", c.LetsEncrypt},
-		{"sectigo", c.Sectigo},
+		{"sectigo_mammoth", c.SectigoMammoth},
+		{"sectigo_elephant", c.SectigoElephant},
 	}
 
 	for _, p := range providers {

@@ -22,14 +22,22 @@ func ScanHandler(w http.ResponseWriter, r *http.Request) {
 
 	cfg := config.Get()
 
-	// Example: Show first Google log
-	fmt.Println(cfg.Google.Logs[0].ID)
+	fmt.Println("Starting CT log scan...")
+	fmt.Printf("Cut-off date: %s\n", req.CutOffDate)
 
-	// TODO: Start scanner workers
-	// TODO: Stream results back
+	// Fetch STH (Signed Tree Head) from all configured CT logs
+	results := RunSTHWorkers(cfg)
 
-	// Echo back the request as JSON response (placeholder)
+	// Log detailed summary to terminal
+	LogSTHSummary(results)
+
+	// Return summary in response
 	w.Header().Set("Content-Type", "application/json")
 	w.WriteHeader(http.StatusOK)
-	json.NewEncoder(w).Encode(req)
+	json.NewEncoder(w).Encode(map[string]interface{}{
+		"message":       "STH fetch completed",
+		"total_logs":    len(results),
+		"cut_off_date":  req.CutOffDate,
+		"results_count": len(results),
+	})
 }
